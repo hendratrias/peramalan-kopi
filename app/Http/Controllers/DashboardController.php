@@ -22,7 +22,7 @@ class DashboardController extends Controller
                 ->get();
             $chart['minggu'] = array();
             $chart['menu'][] = $value->nama;
-            $date = '2020-09-05';
+            $date = '2020-09-08';
             $chart['warna'][$keys] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
             foreach ($data as $key => $item) {
                 $chart['terjual'][$value->id][$key] = $item->terjual;

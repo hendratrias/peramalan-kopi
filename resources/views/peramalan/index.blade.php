@@ -39,17 +39,17 @@
                                 @php
                                     $x = 0;
                                     $now = date('Y-m-d');
-                                    $date = "2020-09-05";
+                                    $date = "2020-11-03";
                                     $tanggal_akhir = date('Y-m-d', strtotime("+7 day", strtotime($tgl_terakhir->tgl_trans)));    
                                 @endphp
                                 @while ($date < $tanggal_akhir)
                                 @php                                    
-                                    $awal = "2020-09-05";
+                                    $awal = "2020-11-03";
                                     $date = date("Y-m-d", strtotime("+" . $x . " week", strtotime($awal)));
                                     $date2 = date("Y-m-d", strtotime("+6 day", strtotime($date)));
                                     $x++;
                                     @endphp
-                                <option value="{{$date}}">{{$date}} - {{$date2}} {{$x}} </option>
+                                <option value="{{$date}}">{{$date}} - {{$date2}} </option>
                                 @endwhile
                             </select>
                         </div>

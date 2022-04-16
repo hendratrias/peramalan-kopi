@@ -6,7 +6,7 @@
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
-                        <i class="pe-7s-car icon-gradient bg-mean-fruit">
+                        <i class="pe-7s-cash icon-gradient bg-mean-fruit">
                         </i>
                     </div>
                     <div>Kasir
@@ -14,8 +14,7 @@
                 </div>
                 <div class="page-title-actions">
                     <div class="d-inline-block dropdown">
-                        <button href="" class="btn-shadow btn btn-success" data-target="#dataKeranjang"
-                            data-toggle="modal">
+                        <button href="" class="btn-shadow btn btn-success" data-target="#dataKeranjang" data-toggle="modal">
                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                 <i class="fa fa-shopping-cart"> </i>
                             </span>
@@ -31,17 +30,19 @@
                     <div class="card-body">
                         <h3 class="card-title">Daftar Menu</h3>
                         <div class="row">
-                        @foreach ($data as $item)
+                            @foreach ($data as $item)
 
-                            <div class="col-md-4">  
+                            <div class="col-md-4">
                                 <div class="main-card mb-3 card"><img width="100%" src="{{asset($item->gambar)}}" alt="Card image cap" class="card-img-top">
-                                    <div class="card-body"><h5 class="card-title">{{$item->nama}}</h5><h6 class="card-subtitle">Rp. {{number_format($item->harga)}}</h6>
-                                        <button class="btn btn-primary keranjang"  data-target="#tambahKeranjang" data-toggle="modal" data-nama="{{$item->nama}}" data-id="{{$item->id}}" data-harga="{{$item->harga}}" data-stok="{{$item->stok}}"><i class="fa fa-shopping-cart"></i></button>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$item->nama}}</h5>
+                                        <h6 class="card-subtitle">Rp. {{number_format($item->harga)}}</h6>
+                                        <button class="btn btn-primary keranjang" data-target="#tambahKeranjang" data-toggle="modal" data-nama="{{$item->nama}}" data-id="{{$item->id}}" data-harga="{{$item->harga}}" data-stok="{{$item->stok}}"><i class="fa fa-shopping-cart"></i></button>
                                         <button class="btn btn-warning" data-target=".resep{{$item->id}}" data-toggle="modal"><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             @endforeach
                         </div>
                     </div>
@@ -136,7 +137,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $no = 1; $total = 0;
+                                        <?php $no = 1;
+                                        $total = 0;
                                         foreach ($keranjang as $k) {
                                         ?>
                                             <tr>
@@ -165,7 +167,7 @@
                                                 </td>
                                             </tr>
 
-                                            <?php $total+=$k->menu->harga;?>
+                                            <?php $total += $k->menu->harga; ?>
                                         <?php } ?>
                                     </tbody>
 
@@ -235,63 +237,63 @@
 @foreach ($data as $item)
 <div class="modal fade resep{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Resep {{$item->nama}}</h5>
-            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </a>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resep {{$item->nama}}</h5>
+                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    @if ($item->resep->isEmpty())
+                    Belum ada resep
+                    @else
+                    @foreach ($item->resep as $resep)
+                    <li>
+                        {{$resep->bahan_baku->nama}}
+                    </li>
+                    @endforeach
+                    @endif
+                </ol>
+            </div>
         </div>
-        <div class="modal-body">
-            <ol>
-            @if ($item->resep->isEmpty())
-                Belum ada resep
-            @else
-            @foreach ($item->resep as $resep)    
-                <li>
-                    {{$resep->bahan_baku->nama}}
-                </li>
-            @endforeach
-            @endif
-            </ol>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 @endforeach
 
-    @section('script')
-    <script>
-        $(document).ready(function() {
-            $('.keranjang').click(function(){
-                console.log('oke');
-                if($(this).data('stok') === 0 ){
-                    $('#submitKeranjang').attr("class", "btn btn-danger");
-                    $('#submitKeranjang').attr("disabled", true);
-                    document.getElementById('submitKeranjang').innerHTML = "Stok Habis !";
-                }else{
-                    $('#submitKeranjang').attr("class", "btn btn-success");
-                    $('#submitKeranjang').attr("disabled", false);
-                    document.getElementById('submitKeranjang').innerHTML = "Simpan";
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('.keranjang').click(function() {
+            console.log('oke');
+            if ($(this).data('stok') === 0) {
+                $('#submitKeranjang').attr("class", "btn btn-danger");
+                $('#submitKeranjang').attr("disabled", true);
+                document.getElementById('submitKeranjang').innerHTML = "Stok Habis !";
+            } else {
+                $('#submitKeranjang').attr("class", "btn btn-success");
+                $('#submitKeranjang').attr("disabled", false);
+                document.getElementById('submitKeranjang').innerHTML = "Simpan";
 
-                }
-                $('#id').val($(this).data('id'));
-                $('#nama').val($(this).data('nama'));
-                $('#stok').val($(this).data('stok'));
-                $('#harga').val($(this).data('harga'));
+            }
+            $('#id').val($(this).data('id'));
+            $('#nama').val($(this).data('nama'));
+            $('#stok').val($(this).data('stok'));
+            $('#harga').val($(this).data('harga'));
         });
-                $('#bayar').on('input', function() {
-                    var bayar = $('#bayar').val();
-                    var total = parseInt($('#total').val());
+        $('#bayar').on('input', function() {
+            var bayar = $('#bayar').val();
+            var total = parseInt($('#total').val());
 
-                    var kembalian = bayar - total;
-                    $('#kembali').attr("value", kembalian);
-                    if(kembalian < 0){
-                        $('#tambah').attr("disabled", true);
-                    }else{
-                        $('#tambah').attr("disabled", false);
-                    }
-                });
+            var kembalian = bayar - total;
+            $('#kembali').attr("value", kembalian);
+            if (kembalian < 0) {
+                $('#tambah').attr("disabled", true);
+            } else {
+                $('#tambah').attr("disabled", false);
+            }
         });
-    </script>
-    @endsection
+    });
+</script>
+@endsection

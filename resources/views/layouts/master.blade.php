@@ -183,7 +183,7 @@
                                     </ul>
                                 </li>
                             @endif
-                            @if (auth()->user()->role->id === 1 || auth()->user()->role->id === 2 )
+                            @if (auth()->user()->role->id === 1)
                             <li class="">
                                 <a href="{{url('/user')}}">
                                     <i class="metismenu-icon pe-7s-users"></i>
