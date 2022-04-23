@@ -6,7 +6,7 @@
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
-                        <i class="pe-7s-car icon-gradient bg-mean-fruit">
+                        <i class="pe-7s-graph1 icon-gradient bg-mean-fruit">
                         </i>
                     </div>
                     <div>Peramalan
@@ -49,7 +49,7 @@
                                     $date2 = date("Y-m-d", strtotime("+6 day", strtotime($date)));
                                     $x++;
                                     @endphp
-                                <option value="{{$date}}">{{$date}} - {{$date2}} </option>
+                                <option value="{{$date}}"> {{$date}} - {{$date2}} </option>
                                 @endwhile
                             </select>
                         </div>

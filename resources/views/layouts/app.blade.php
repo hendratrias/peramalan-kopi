@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +20,9 @@
     <!-- Styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('assets/sweetalert/sweetalert.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="<?php echo asset('assets/images/mug.png'); ?>">
 </head>
+
 <body>
     <div id="app">
 
@@ -30,4 +33,5 @@
     <script type="text/javascript" src="{{asset('assets/sweetalert/sweetalert.min.js')}}"></script>
     @include('sweetalert::alert')
 </body>
+
 </html>

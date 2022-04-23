@@ -6,7 +6,7 @@
             <div class="page-title-wrapper">
                 <div class="page-title-heading">
                     <div class="page-title-icon">
-                        <i class="pe-7s-car icon-gradient bg-mean-fruit">
+                        <i class="pe-7s-graph1 icon-gradient bg-mean-fruit">
                         </i>
                     </div>
                     <div>Riwayat Peramalan
@@ -36,7 +36,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $key => $item)
-                                    
+
                                 <tr>
                                     <th scope="row">{{$key+1}}</th>
                                     <td>{{$item->menu->nama}}</td>
@@ -47,7 +47,7 @@
                                     <td>{{$item->MAPE}}</td>
                                     <td>
                                         @if (auth()->user()->role->id === 1)
-                                        <button type="button"  class="btn btn-lg btn-danger text-white hapus" data-id="{{$item->id}}" data-tgl="{{$item->tgl}}" data-toggle="modal" data-target="#HapusData"><i class="fa fa-trash"></i></button>
+                                        <button type="button" class="btn btn-lg btn-danger text-white hapus" data-id="{{$item->id}}" data-tgl="{{$item->tgl}}" data-toggle="modal" data-target="#HapusData"><i class="fa fa-trash"></i></button>
                                         @endif
                                     </td>
                                 </tr>
@@ -79,34 +79,34 @@
 
 <div class="modal fade" id="HapusData" tabindex="-1" role="dialog" aria-labelledby="HapusDataLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="HapusDataLabel">Hapus Peramalan</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="HapusDataLabel">Hapus Peramalan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-hapus" method="POST">
+                    @csrf @method('DELETE')
+                    Apakah Anda Yakin Ingin Menghapus Peramalan Tanggal <span class="tgl-peramalan"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Hapus</button>
+                </form>
+            </div>
         </div>
-        <div class="modal-body">
-          <form id="form-hapus" method="POST">
-              @csrf @method('DELETE')
-              Apakah Anda Yakin Ingin Menghapus Peramalan Tanggal <span class="tgl-peramalan"></span>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-primary">Hapus</button>
-          </form>
-        </div>
-      </div>
     </div>
 </div>
 
 @section('script')
-    <script>
-        $('.hapus').click(function(){
-                        var id = $(this).data('id');
-                        var url = "{{url('/peramalan')}}" + '/' + id;
-                        $('#form-hapus').attr('action', url);
-                        $('.tgl-peramalan').html($(this).data('tgl'));
-                });
-    </script>
+<script>
+    $('.hapus').click(function() {
+        var id = $(this).data('id');
+        var url = "{{url('/peramalan')}}" + '/' + id;
+        $('#form-hapus').attr('action', url);
+        $('.tgl-peramalan').html($(this).data('tgl'));
+    });
+</script>
 @endsection

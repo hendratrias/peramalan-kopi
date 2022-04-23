@@ -7,13 +7,14 @@
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>SiniKopi Jember</title>
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
     <link href="{{asset('main.css')}}" rel="stylesheet">
     <link href="{{asset('assets/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
     <link href="{{asset('assets/sweetalert/sweetalert.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="<?php echo asset('assets/images/mug.png'); ?>">
+
     @yield('css')
 </head>
 
@@ -21,11 +22,10 @@
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         <div class="app-header header-shadow bg-plum-plate header-text-light">
             <div class="app-header__logo">
-                <h5 class="text-light">Peramalan Kopi</h5>
+                <h5 class="text-light">SiniKopi</h5>
                 <div class="header__pane ml-auto">
                     <div>
-                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
-                            data-class="closed-sidebar">
+                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
                             </span>
@@ -49,8 +49,7 @@
                     <div class="logo-src"></div>
                     <div class="header__pane ml-auto">
                         <div>
-                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
-                                data-class="closed-sidebar">
+                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                                 <span class="hamburger-box">
                                     <span class="hamburger-inner"></span>
                                 </span>
@@ -134,7 +133,7 @@
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul class="mm-collapse" style="">
-                                    
+
                                     <li>
                                         <a href="{{url('/penjualan/kasir')}}">
                                             <i class="metismenu-icon"></i>
@@ -159,29 +158,29 @@
                             </li>
                             @endif
                             @if (auth()->user()->role->id === 1 || auth()->user()->role->id === 3 )
-                                <li class="">
-                                    <a href="#" aria-expanded="true">
-                                        <i class="metismenu-icon pe-7s-graph1"></i>
-                                        Peramalan
-                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                    </a>
-                                    <ul class="mm-collapse" style="">
-                                        @if (auth()->user()->role->id === 1)
-                                        <li>
-                                            <a href="{{url('/peramalan')}}">
-                                                <i class="metismenu-icon"></i>
-                                                Buat Permamalan
-                                            </a>
-                                        </li>
-                                        @endif
-                                        <li>
-                                            <a href="{{url('/peramalan/riwayat')}}">
-                                                <i class="metismenu-icon">
-                                                </i>Riwayat Peramalan
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                            <li class="">
+                                <a href="#" aria-expanded="true">
+                                    <i class="metismenu-icon pe-7s-graph1"></i>
+                                    Peramalan
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul class="mm-collapse" style="">
+                                    @if (auth()->user()->role->id === 1)
+                                    <li>
+                                        <a href="{{url('/peramalan')}}">
+                                            <i class="metismenu-icon"></i>
+                                            Buat Permamalan
+                                        </a>
+                                    </li>
+                                    @endif
+                                    <li>
+                                        <a href="{{url('/peramalan/riwayat')}}">
+                                            <i class="metismenu-icon">
+                                            </i>Riwayat Peramalan
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                             @endif
                             @if (auth()->user()->role->id === 1)
                             <li class="">
